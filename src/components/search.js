@@ -1,7 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
-const Search = () => {
+class Search extends React.Component {
+
+    render () {
+        const {handleInputChange, search, handleFormSubmit } = this.props
 
     return (
         <div className="row">
@@ -11,21 +15,27 @@ const Search = () => {
                         <h3 className="panel-title">Search Parameters</h3>
                     </div>
                     <div className="panel-body">
-                        <form role="form">
+                        <form>
                             <div className="form-group">
-                                <label for="search">Search Term:</label>
-                                <input type="text" className="form-control" id="search" />
+                                <label>Search Term:</label>
+                                <input 
+                                onChange={handleInputChange}
+                                value={search}
+                                name="search"
+                                type="text" 
+                                className="form-control" 
+                                id="search" 
+                                />
                             </div>
-                            <div className="form-group">
-                                <label for="start-year">Start Year:</label>
-                                <input type="text" className="form-control" id="start-year" />
-                            </div>
-                            <div className="form-group">
-                                <label for="end-year">End Year:</label>
-                                <input type="text" className="form-control" id="end-year" />
-                            </div>
-                            <button type="submit" className="btn btn-default" id="search-btn">Search</button>
-                            <button type="button" className="btn btn-default">Clear</button>
+                       
+                            <button 
+                            onClick={handleFormSubmit}
+                            type="submit" 
+                            className="btn btn-default" 
+                            id="search-btn">
+                            Search
+                            </button>
+                            
                         </form>
                     </div>
                 </div>
@@ -34,5 +44,12 @@ const Search = () => {
 
     );
 }
+}
+
+Search.props = {
+    handleInputChange: PropTypes.func,
+    search: PropTypes.string,
+    handleFormSubmit: PropTypes.func
+  }
 
 export default Search;
