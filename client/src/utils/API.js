@@ -8,5 +8,8 @@ export default {
   search: function(query) {
     console.log(query);
     return axios.get(BASEURL + query);
-  }
+  },
+  saveArticle: function (arcticleData) {
+    return axios.post("/api/saved", arcticleData);
+  },
 };
